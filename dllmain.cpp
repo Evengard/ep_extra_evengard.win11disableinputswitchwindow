@@ -25,7 +25,7 @@ BOOL PsymEnumeratesymbolsCallback_u(
     return TRUE;
 }*/
 
-BOOL dummyOnHotkey()
+__int64 dummyOnHotkey()
 {
     printf("[InputSwitchDisabler] Overriding hotkey detection!\n");
     return 0;
@@ -121,7 +121,7 @@ extern "C" __declspec(dllexport) int setup() {
                         SYMBOL_INFO symInfo = { 0 };
                         symInfo.SizeOfStruct = sizeof(SYMBOL_INFO);
                         symInfo.MaxNameLen = 0; // We don't need the name
-                        if (!SymFromName(hProcess, _T("CTsfHandler::_OnHotkey"), &symInfo))
+                        if (!SymFromName(hProcess, _T("CTsfHandler::_HandleLegacyShortcutPressed"), &symInfo))
                         {
                             printf("[InputSwitchDisabler] SymFromName Failure = %i!\n", GetLastError());
                             return 1;
